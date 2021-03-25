@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8890590508575634570}
   m_Layer: 0
   m_Name: InvisableWall
-  m_TagString: Untagged
+  m_TagString: InvisibleWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8890590508575634568}
   m_LocalRotation: {x: -0.0025997723, y: -0.002657365, z: 0.7046089, w: 0.7095862}
-  m_LocalPosition: {x: 5.84, y: 5.12, z: -0}
+  m_LocalPosition: {x: 6.54, y: 5.12, z: 0.01}
   m_LocalScale: {x: 1, y: 1, z: 1.0276752}
   m_Children: []
   m_Father: {fileID: 8890590509756831989}
@@ -90,10 +90,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8890590508575634568}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &8890590509756831988
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 8890590510022807078}
   m_Layer: 0
   m_Name: InvisableWall (1)
-  m_TagString: Untagged
+  m_TagString: InvisibleWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,7 +156,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8890590510022807076}
   m_LocalRotation: {x: -0.7095898, y: -0.70461285, z: -0.0012819428, w: -0.0012146331}
-  m_LocalPosition: {x: -5.84, y: 5.21, z: -0.12}
+  m_LocalPosition: {x: -6.21, y: 5.21, z: -0.12}
   m_LocalScale: {x: 1, y: 1, z: 0.9980781}
   m_Children: []
   m_Father: {fileID: 8890590509756831989}
@@ -219,10 +219,10 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8890590510022807076}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1001 &8890590510033548876

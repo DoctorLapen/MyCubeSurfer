@@ -1,0 +1,37 @@
+﻿using System;
+using UnityEngine;
+
+namespace MyCubeSurfer
+{
+    public class PlayerSensor : MonoBehaviour
+    {
+        [SerializeField]
+        private string _invisibleWallTag;
+
+        [SerializeField]
+        private PlayerMoveController _playerMoveController;
+
+        
+        
+        private void OnTriggerEnter(Collider coll)
+        {
+            if (coll.CompareTag(_invisibleWallTag))
+            {
+                CurrentMoveProperties.sideMove = SideMove.NotAllowed;
+            }
+        }
+
+        private void OnTriggerStay(Collider coll)
+        {
+            _playerMoveController.MoveAwayFromWall(coll.transform.position);
+        }
+
+        private void OnTriggerExit(Collider coll)
+        {
+            if (coll.CompareTag(_invisibleWallTag))
+            {
+                 CurrentMoveProperties.sideMove = SideMove.Allowed;
+            }
+        }
+    }
+}

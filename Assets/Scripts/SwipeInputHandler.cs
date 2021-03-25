@@ -11,11 +11,7 @@ namespace MyCubeSurfer
         private Vector2 _pointA;
         private Vector2 _pointB;
         
-
-        private void Awake()
-        {
-            CurrentMoveDirection.value = MoveDirection.Straight;
-        }
+        
 
         public void Update()
         {
@@ -43,12 +39,12 @@ namespace MyCubeSurfer
                                 //Right
                                 if (swipeDirection > 0)
                                 {
-                                    CurrentMoveDirection.value = MoveDirection.Right;
+                                    CurrentMoveProperties.moveDirection = MoveDirection.Right;
                                 }
                                 //Left
                                 else
                                 {
-                                    CurrentMoveDirection.value = MoveDirection.Left;
+                                    CurrentMoveProperties.moveDirection = MoveDirection.Left;
                                 }
 
                             }
@@ -58,7 +54,7 @@ namespace MyCubeSurfer
                 }
                 else if (touch.phase == TouchPhase.Ended)
                 {
-                    CurrentMoveDirection.value = MoveDirection.Straight;
+                    CurrentMoveProperties.moveDirection = MoveDirection.Straight;
                     
                 }
                 
