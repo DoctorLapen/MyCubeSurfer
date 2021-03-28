@@ -20,10 +20,10 @@ namespace MyCubeSurfer
         [SerializeField]
         private string _groundTag;
 
-        
+        [SerializeField]
+        private RectTransform _gameOverScreen;
 
         
-
         [SerializeField]
         private List<GameObject> _cubes = new List<GameObject>();
 
@@ -31,11 +31,14 @@ namespace MyCubeSurfer
         private float _playerSkinOffsetY;
         private float _groundY;
         private Vector3 _raycastDirection = new Vector3(0,-1,0);
+        
         private Collider _startCubeCollider;
+        private bool _isNotMovingThrough;
 
 
         private void Awake()
         {
+            _isNotMovingThrough = true; 
             int startCubeIndex = 0;
              _startCubeCollider = _cubes[startCubeIndex].GetComponent<Collider>();
             _cubeSizeY = _startCubeCollider.bounds.size.y;
@@ -64,15 +67,18 @@ namespace MyCubeSurfer
 
         public void MoveThroughRoadBlock(int roadBlocksAmount)
         {
+            Debug.Log("MoveThroughRoadBlock");
             if (_cubes.Count > roadBlocksAmount)
             {
                 ChangeDetectorPosition(roadBlocksAmount);
                 DetachRemovedBlocks(roadBlocksAmount);
                 StartCoroutine(MoveToGround());
-
+              
             }
-            else
+            else if (_cubes.Count <= roadBlocksAmount && _isNotMovingThrough)
             {
+                Time.timeScale = 0;
+                _gameOverScreen.gameObject.SetActive(true);
             }
         }
 
@@ -101,11 +107,15 @@ namespace MyCubeSurfer
 
         private IEnumerator MoveToGround()
         {
+            _isNotMovingThrough = false;
             bool isNotGroundFound = true;
             RaycastHit raycastHit;
             do
             {
-                if (Physics.Raycast(_startCubeCollider.transform.position, _raycastDirection, out raycastHit))
+                Vector3 origin = _startCubeCollider.transform.position;
+                float nearZ = origin.z - _startCubeCollider.bounds.size.z / 2;
+                origin.z = nearZ ;
+                if (Physics.Raycast(origin, _raycastDirection, out raycastHit))
                 {
                     isNotGroundFound = !raycastHit.collider.CompareTag(_groundTag);
                 }
@@ -130,6 +140,7 @@ namespace MyCubeSurfer
             newPosition = _playerSkin.position;
             newPosition.y = newY + _playerSkinOffsetY;
             _playerSkin.position = newPosition;
+            _isNotMovingThrough = true;
         }
     }
 }

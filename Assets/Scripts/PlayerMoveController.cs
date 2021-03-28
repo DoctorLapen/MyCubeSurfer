@@ -10,6 +10,7 @@ namespace MyCubeSurfer
 
         private void Awake()
         {
+            Time.timeScale = 1;
             CurrentMoveProperties.sideMove = SideMove.Allowed;
             CurrentMoveProperties.moveDirection = MoveDirection.Straight;
         }
