@@ -7,6 +7,7 @@ namespace MyCubeSurfer
 {
     public class SurferCubesController : MonoBehaviour
     {
+        private const int DETECTOR_CUBE_INDEX = 0; 
         [SerializeField]
         private float _yOffset;
 
@@ -65,30 +66,37 @@ namespace MyCubeSurfer
         {
             if (_cubes.Count > roadBlocksAmount)
             {
-                int cubesAmountDifference = _cubes.Count - roadBlocksAmount;
-                int cubeIndex = _cubes.Count - 1;
-                Vector3 topPosition = _cubes[cubesAmountDifference].transform.position;
-                for (int i = 0; i < roadBlocksAmount;i++ )
-                {
-                    GameObject cube = _cubes[cubeIndex];
-                    _cubes.RemoveAt(cubeIndex);
-                    cube.transform.parent = null;
-                    cubeIndex--;
-
-                }
-                for (int i = 0; i < _cubes.Count; i++)
-                {
-                    GameObject cube = _cubes[i];
-                    cube.transform.position = topPosition;
-                    topPosition.y += _cubeSizeY + _yOffset;
-                }
-
+                ChangeDetectorPosition(roadBlocksAmount);
+                DetachRemovedBlocks(roadBlocksAmount);
                 StartCoroutine(MoveToGround());
 
             }
             else
             {
             }
+        }
+
+        private void DetachRemovedBlocks(int roadBlocksAmount)
+        {
+            int firstItemIndex = 0;
+            for (int i = 0; i < roadBlocksAmount; i++)
+            {
+                GameObject cube = _cubes[firstItemIndex];
+                _cubes.RemoveAt(firstItemIndex);
+                cube.transform.parent = null;
+            }
+        }
+
+        private void ChangeDetectorPosition(int newPositionIndex)
+        {
+            GameObject detectorCube = _cubes[DETECTOR_CUBE_INDEX];
+            GameObject topCube = _cubes[newPositionIndex];
+            Vector3 topPosition = topCube.transform.position;
+            Vector3 detectorCubePosition = detectorCube.transform.position;
+            topCube.transform.position = detectorCubePosition;
+            detectorCube.transform.position = topPosition;
+            _cubes[DETECTOR_CUBE_INDEX] = topCube;
+            _cubes[newPositionIndex] = detectorCube;
         }
 
         private IEnumerator MoveToGround()
