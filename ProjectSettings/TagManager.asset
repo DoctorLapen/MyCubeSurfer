@@ -8,6 +8,7 @@ TagManager:
   - SurferCube
   - RoadblockCube
   - Ground
+  - Coin
   layers:
   - Default
   - TransparentFX
