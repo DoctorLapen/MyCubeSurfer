@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MyCubeSurfer
 {
-    public class PlayerSensor : MonoBehaviour
+    public class InvisibleWallsDetector : MonoBehaviour
     {
         [SerializeField]
         private string _invisibleWallTag;
@@ -23,7 +23,10 @@ namespace MyCubeSurfer
 
         private void OnTriggerStay(Collider coll)
         {
-            _playerMoveController.MoveAwayFromWall(coll.transform.position);
+            if (coll.CompareTag(_invisibleWallTag))
+            {
+                _playerMoveController.MoveAwayFromWall(coll.transform.position);
+            }
         }
 
         private void OnTriggerExit(Collider coll)

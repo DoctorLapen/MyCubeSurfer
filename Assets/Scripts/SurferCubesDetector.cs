@@ -18,11 +18,17 @@ namespace MyCubeSurfer
         {
             if (coll.CompareTag(_surferCubeTag))
             {
-                CubesSegment cubesSegment = coll.transform.parent.GetComponent<CubesSegment>();
-                if (cubesSegment.CubeType == CubeType.Surfer)
+                if (coll.transform.parent != null)
                 {
-                    _surferCubesController.AddSurferCubes(cubesSegment.cubes);
+                    CubesSegment cubesSegment = coll.transform.parent.GetComponent<CubesSegment>();
+                 
+                        if (cubesSegment.CubeType == CubeType.Surfer)
+                        {
+                            _surferCubesController.AddSurferCubes(cubesSegment.cubes);
+                        }
+
                 }
+                
             }
         }
     }
