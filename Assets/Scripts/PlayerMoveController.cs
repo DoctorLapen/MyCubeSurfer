@@ -19,8 +19,9 @@ namespace MyCubeSurfer
         private void FixedUpdate()
         {
             
-            float x = (float) CurrentMoveProperties.moveDirection * _speed * (float)CurrentMoveProperties.sideMove;
-            transform.position += new Vector3(x, 0, _speed);
+            float sideMove = (float) CurrentMoveProperties.moveDirection * _speed * (float)CurrentMoveProperties.sideMove;
+            transform.position += transform.forward *= _speed;
+            transform.position += transform.right * sideMove;
         }
 
         public void MoveAwayFromWall(Vector3 wallPosition)
@@ -37,7 +38,7 @@ namespace MyCubeSurfer
             }
 
             float x =  _speed * (float)backMoveDirection;
-            transform.position += new Vector3(x, 0, _speed);
+            transform.position += transform.right *  x;
         }
 
     }
