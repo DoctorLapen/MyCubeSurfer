@@ -67,7 +67,6 @@ namespace MyCubeSurfer
 
         public void MoveThroughRoadBlock(int roadBlocksAmount)
         {
-            Debug.Log("MoveThroughRoadBlock");
             if (_cubes.Count > roadBlocksAmount)
             {
                 ChangeDetectorPosition(roadBlocksAmount);
