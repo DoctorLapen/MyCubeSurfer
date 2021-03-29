@@ -17,7 +17,7 @@ namespace MyCubeSurfer
         {
             if (coll.CompareTag(_invisibleWallTag))
             {
-                CurrentMoveProperties.sideMove = SideMove.NotAllowed;
+                MoveProperties.sideMove = SideMove.NotAllowed;
             }
         }
 
@@ -33,7 +33,7 @@ namespace MyCubeSurfer
         {
             if (coll.CompareTag(_invisibleWallTag))
             {
-                 CurrentMoveProperties.sideMove = SideMove.Allowed;
+                 MoveProperties.sideMove = SideMove.Allowed;
             }
         }
     }

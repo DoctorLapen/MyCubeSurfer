@@ -39,12 +39,12 @@ namespace MyCubeSurfer
                                 //Right
                                 if (swipeDirection > 0)
                                 {
-                                    CurrentMoveProperties.moveDirection = MoveDirection.Right;
+                                    MoveProperties.moveDirection = MoveDirection.Right;
                                 }
                                 //Left
                                 else
                                 {
-                                    CurrentMoveProperties.moveDirection = MoveDirection.Left;
+                                    MoveProperties.moveDirection = MoveDirection.Left;
                                 }
 
                             }
@@ -54,7 +54,7 @@ namespace MyCubeSurfer
                 }
                 else if (touch.phase == TouchPhase.Ended)
                 {
-                    CurrentMoveProperties.moveDirection = MoveDirection.Straight;
+                    MoveProperties.moveDirection = MoveDirection.Straight;
                     
                 }
                 

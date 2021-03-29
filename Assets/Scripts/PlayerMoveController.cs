@@ -11,17 +11,20 @@ namespace MyCubeSurfer
         private void Awake()
         {
             Time.timeScale = 1;
-            CurrentMoveProperties.sideMove = SideMove.Allowed;
-            CurrentMoveProperties.moveDirection = MoveDirection.Straight;
+            MoveProperties.sideMove = SideMove.Allowed;
+            MoveProperties.moveDirection = MoveDirection.Straight;
         }
 
 
         private void FixedUpdate()
         {
+            if (MoveProperties.isPlayGame)
+            {
+                float sideMove = (float) MoveProperties.moveDirection * _speed * (float)MoveProperties.sideMove;
+                transform.position += transform.forward *= _speed;
+                transform.position += transform.right * sideMove;
+            }
             
-            float sideMove = (float) CurrentMoveProperties.moveDirection * _speed * (float)CurrentMoveProperties.sideMove;
-            transform.position += transform.forward *= _speed;
-            transform.position += transform.right * sideMove;
         }
 
         public void MoveAwayFromWall(Vector3 wallPosition)
